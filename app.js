@@ -1,11 +1,34 @@
-const EventEmmiter = require("events");
+const http = require('http')
 
-const customEmitter = new EventEmmiter();
+const server = http.createServer((req, res) => {
+  //   if (req.url === '/') {
+  //     res.end('Welcome to our home page')
+  //   }
+  //   if (req.url === '/about') {
+  //     res.end('Here is our short history')
+  //   }
+  //   res.end(`
+  //   <h1>Oops!</h1>
+  // <p>We can't seem to find the page you are looking for</p>
+  // <a href="/">back home</a>
+  //   `)
+  // ###################################
+  // ###################################
+  //
+  //  IF YOU GET ERRORS WHILE USING ABOVE SETUP,
+  // SWITCH TO IF, ELSE IF, ELSE (BELOW)
+  // WE COVER THE CAUSE, LATER IN EXPRESS TUTORIAL
+  if (req.url === '/') {
+    res.end('Welcome to our home page')
+  } else if (req.url === '/about') {
+    res.end('Here is our short history')
+  } else {
+    res.end(`
+    <h1>Oops!</h1>
+    <p>We can't seem to find the page you are looking for</p>
+    <a href="/">back home</a>
+    `)
+  }
+})
 
-customEmitter.on("response", () => {
-  console.log("data recieved");
-});
-customEmitter.on("response", (name) => {
-  console.log("Some other opertations performed..."+"by "+name);
-});
-customEmitter.emit("response","sj");
+server.listen(5000)
